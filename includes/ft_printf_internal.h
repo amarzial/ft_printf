@@ -6,7 +6,7 @@
 /*   By: amarzial <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/08 17:49:26 by amarzial          #+#    #+#             */
-/*   Updated: 2016/12/09 19:41:19 by amarzial         ###   ########.fr       */
+/*   Updated: 2016/12/09 20:00:22 by amarzial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ typedef struct	s_arg
 	int		flag_sign;
 	int		field_width;
 	int		precision;
+	int		prec_set;
 	enum
 	{
 		none,

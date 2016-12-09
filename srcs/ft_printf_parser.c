@@ -6,7 +6,7 @@
 /*   By: amarzial <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/07 17:58:05 by amarzial          #+#    #+#             */
-/*   Updated: 2016/12/08 18:05:31 by amarzial         ###   ########.fr       */
+/*   Updated: 2016/12/09 20:00:40 by amarzial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ int			ft_printf_parse_arg(char *str, t_arg *arg)
 
 	str++;
 	cnt = 0;
-	arg->precision = 1;
 	cnt += parse_flag(str, arg);
 	if (ft_isdigit(str[cnt]))
 		arg->field_width = ft_atoi(str + cnt);
@@ -76,6 +75,7 @@ int			ft_printf_parse_arg(char *str, t_arg *arg)
 		cnt++;
 	if (str[cnt] == '.')
 	{
+		arg->prec_set = 1;
 		arg->precision = ft_atoi(str + ++cnt);
 		while (ft_isdigit(str[cnt]))
 			cnt++;
