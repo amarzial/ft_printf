@@ -1,33 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_handlings.c                              :+:      :+:    :+:   */
+/*   ft_printf_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amarzial <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/06 17:46:29 by amarzial          #+#    #+#             */
-/*   Updated: 2016/12/08 17:51:50 by amarzial         ###   ########.fr       */
+/*   Created: 2016/12/09 12:52:38 by amarzial          #+#    #+#             */
+/*   Updated: 2016/12/09 19:25:35 by amarzial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include "ft_printf_internal.h"
-#include "ft_printf_handler.h"
+#include <unistd.h>
 
-extern t_handler g_table[];
-
-void	ft_printf_handler(t_arg *arg, va_list *lst)
+void	ft_printf_putnchar(char c, int times)
 {
-	int i;
-
-	i = 0;
-	while (g_table[i].conv != 0)
-	{
-		if (g_table[i].conv == arg->conversion)
-		{
-			g_table[i].f(arg, lst);
-			return ;
-		}
-		i++;
-	}
+	while (times--)
+		write(1, &c, 1);
 }

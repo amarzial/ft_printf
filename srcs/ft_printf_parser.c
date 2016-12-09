@@ -6,12 +6,12 @@
 /*   By: amarzial <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/07 17:58:05 by amarzial          #+#    #+#             */
-/*   Updated: 2016/12/07 19:40:09 by amarzial         ###   ########.fr       */
+/*   Updated: 2016/12/08 18:05:31 by amarzial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "ft_printf.h"
+#include "ft_printf_internal.h"
 
 static int	parse_len(char *str, t_arg *arg)
 {
@@ -40,15 +40,36 @@ static int	parse_len(char *str, t_arg *arg)
 	return (0);
 }
 
+static int	parse_flag(char *str, t_arg *arg)
+{
+	int cnt;
+
+	cnt = 0;
+	while (ft_strchr(FT_PRINTF_FLAGS, str[cnt]))
+	{
+		if (str[cnt] == '#')
+			arg->flag_alt = 1;
+		else if (str[cnt] == '0')
+			arg->flag_zero = 1;
+		else if (str[cnt] == '-')
+			arg->flag_left = 1;
+		else if (str[cnt] == ' ')
+			arg->flag_space = 1;
+		else if (str[cnt] == '+')
+			arg->flag_sign = 1;
+		cnt++;
+	}
+	return (cnt);
+}
+
 int			ft_printf_parse_arg(char *str, t_arg *arg)
 {
 	int	cnt;
 
 	str++;
 	cnt = 0;
-	while (ft_strchr(FT_PRINTF_FLAGS, str[cnt]))
-		cnt++;
-	arg->flag = ft_strsub(str, 0, cnt);
+	arg->precision = 1;
+	cnt += parse_flag(str, arg);
 	if (ft_isdigit(str[cnt]))
 		arg->field_width = ft_atoi(str + cnt);
 	while (ft_isdigit(str[cnt]))

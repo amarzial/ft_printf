@@ -1,8 +1,17 @@
-#include <stdarg.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amarzial <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/12/08 15:35:30 by amarzial          #+#    #+#             */
+/*   Updated: 2016/12/08 17:51:34 by amarzial         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
-#include "ft_printf.h"
-
-
+#include "ft_printf_internal.h"
 
 static int		print_arg(char **str, va_list *lst)
 {
@@ -11,6 +20,8 @@ static int		print_arg(char **str, va_list *lst)
 
 	ft_bzero(&arg, sizeof(t_arg));
 	len = ft_printf_parse_arg(*str, &arg);
+	ft_printf_handler(&arg, lst);
+	*str += len;
 	return (len);
 }
 
