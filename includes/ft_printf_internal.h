@@ -6,7 +6,7 @@
 /*   By: amarzial <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/08 17:49:26 by amarzial          #+#    #+#             */
-/*   Updated: 2016/12/10 14:20:03 by amarzial         ###   ########.fr       */
+/*   Updated: 2016/12/11 12:19:05 by amarzial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ void			ft_printf_handler(t_arg *arg, va_list *lst);
 
 int				ft_printf_signed_decimal(t_arg *arg, va_list *lst);
 int				ft_printf_unsigned_base(t_arg *arg, va_list *lst);
+int				ft_printf_pointer(t_arg *arg, va_list *lst);
+int				ft_printf_string(t_arg *arg, va_list *lst);
 
 /* /handlers */
 /* print */

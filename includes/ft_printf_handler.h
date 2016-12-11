@@ -6,7 +6,7 @@
 /*   By: amarzial <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/08 14:58:20 by amarzial          #+#    #+#             */
-/*   Updated: 2016/12/10 14:34:01 by amarzial         ###   ########.fr       */
+/*   Updated: 2016/12/11 12:20:26 by amarzial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ t_handler		g_table[] =
 	{'u', &ft_printf_unsigned_base},
 	{'x', &ft_printf_unsigned_base},
 	{'X', &ft_printf_unsigned_base},
+	{'p', &ft_printf_pointer},
+	{'s', &ft_printf_string},
 	{0, 0}
 };
 
