@@ -6,14 +6,19 @@
 /*   By: amarzial <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/11 12:10:12 by amarzial          #+#    #+#             */
-/*   Updated: 2016/12/11 17:37:01 by amarzial         ###   ########.fr       */
+/*   Updated: 2016/12/11 17:26:59 by amarzial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "libft.h"
 #include "ft_printf_internal.h"
 
-static void		padding(const char *out, t_arg *arg, int len)
+static void		putnwstr(const wchar_t *str, size_t size)
+{
+	while (size--)
+		ft_putwchar(*str++);
+}
+
+static void		padding(const wchar_t *out, t_arg *arg, int len)
 {
 	if (arg->prec_set)
 		len = ft_min(len, arg->precision);
@@ -21,28 +26,28 @@ static void		padding(const char *out, t_arg *arg, int len)
 	{
 		if (arg->flag_left)
 		{
-			write(1, out, len);
+			putnwstr(out, len);
 			ft_printf_putnchar(' ', arg->field_width - len);
 		}
 		else 
 		{
 			ft_printf_putnchar(' ', arg->field_width - len);
-			write(1, out, len);
+			putnwstr(out, len);
 		}
 	}
 	else
-		ft_putstr(out);
+		putnwstr(out, len);
 }
 
-int			ft_printf_string(t_arg *arg, va_list *lst)
+int			ft_printf_wstring(t_arg *arg, va_list *lst)
 {
-	const char	*str;
-	size_t		len;
+	const wchar_t	*str;
+	size_t			len;
 
-	if (arg->length_mod == l)
-		return (ft_printf_wstring(arg, lst));
-	str = va_arg(*lst, char*);
-	len = ft_strlen(str);
+	str = va_arg(*lst, wchar_t*);
+	len = 0;
+	while (str[len])
+		len++;
 	padding(str, arg, len);
 	return (len);
 }

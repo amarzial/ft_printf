@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_string.c                                 :+:      :+:    :+:   */
+/*   ft_printf_char.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amarzial <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/11 12:10:12 by amarzial          #+#    #+#             */
-/*   Updated: 2016/12/11 17:37:01 by amarzial         ###   ########.fr       */
+/*   Created: 2016/12/11 17:27:12 by amarzial          #+#    #+#             */
+/*   Updated: 2016/12/12 12:14:36 by amarzial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "ft_printf_internal.h"
 
-static void		padding(const char *out, t_arg *arg, int len)
+static void		padding(wchar_t out, t_arg *arg, int len)
 {
 	if (arg->prec_set)
 		len = ft_min(len, arg->precision);
@@ -21,28 +21,26 @@ static void		padding(const char *out, t_arg *arg, int len)
 	{
 		if (arg->flag_left)
 		{
-			write(1, out, len);
+			ft_putwchar(out);
 			ft_printf_putnchar(' ', arg->field_width - len);
 		}
 		else 
 		{
 			ft_printf_putnchar(' ', arg->field_width - len);
-			write(1, out, len);
+			ft_putwchar(out);
 		}
 	}
 	else
-		ft_putstr(out);
+		ft_putwchar(out);
 }
 
-int			ft_printf_string(t_arg *arg, va_list *lst)
+int			ft_printf_wchar(t_arg *arg, va_list *lst)
 {
-	const char	*str;
+	wchar_t		c;
 	size_t		len;
 
-	if (arg->length_mod == l)
-		return (ft_printf_wstring(arg, lst));
-	str = va_arg(*lst, char*);
-	len = ft_strlen(str);
-	padding(str, arg, len);
+	c = va_arg(*lst, wchar_t);
+	len = 1;
+	padding(c, arg, len);
 	return (len);
 }

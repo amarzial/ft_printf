@@ -9,6 +9,9 @@ SOURCES = ft_printf.c \
 		  ft_printf_unsignedtostr_base.c \
 		  ft_printf_pointer.c \
 		  ft_printf_string.c \
+		  ft_printf_wstring.c \
+		  ft_printf_char.c \
+		  ft_printf_wchar.c \
 
 all:
 	rm -f libprintf.a
