@@ -39,9 +39,14 @@ int			ft_printf_char(t_arg *arg, va_list *lst)
 	char	c;
 	size_t		len;
 
-	if (arg->length_mod == l)
-		return (ft_printf_wchar(arg, lst));
-	c = (char)va_arg(*lst, int);
+	if (arg->conversion == '%')
+		c = '%';
+	else
+	{
+		if (arg->length_mod == l)
+			return (ft_printf_wchar(arg, lst));
+		c = (char)va_arg(*lst, int);
+	}
 	len = 1;
 	padding(c, arg, len);
 	return (len);

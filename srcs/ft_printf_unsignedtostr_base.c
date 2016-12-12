@@ -29,7 +29,7 @@ static int	ndigits(intmax_t n, int base)
 	return (ret);
 }
 
-static int	getlen(intmax_t num, t_arg *arg)
+static int	getlen(t_arg *arg)
 {
 	int		prec;
 
@@ -77,7 +77,7 @@ char		*ft_printf_unsignedtostr_base(intmax_t n, t_arg *arg, char *base)
 
 	b = ft_strlen(base);
 	size = ndigits(n, b);
-	len = ft_max(size, getlen(n, arg));
+	len = ft_max(size, getlen(arg));
 	if (!(out = ft_strnew(len)))
 		return (0);
 	index = 0;

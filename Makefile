@@ -1,4 +1,4 @@
-CFLAGS = -c -g
+CFLAGS = -c -Wall -Werror -Wextra
 SRCDIR = ./srcs/
 SOURCES = ft_printf.c \
 		  ft_printf_parser.c \

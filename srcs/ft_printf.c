@@ -37,9 +37,7 @@ int		ft_printf(const char *format, ...)
 	while (*cursor)
 	{
 		if (*cursor == '%')
-		{
 			print_arg(&cursor, &lst);
-		}
 		else
 		{
 			ft_putchar(*cursor++);

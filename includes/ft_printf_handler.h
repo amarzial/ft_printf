@@ -24,6 +24,7 @@ typedef struct	s_handler
 
 t_handler		g_table[] =
 {
+	{'%', &ft_printf_char},
 	{'i', &ft_printf_signed_decimal},
 	{'d', &ft_printf_signed_decimal},
 	{'D', &ft_printf_signed_decimal},

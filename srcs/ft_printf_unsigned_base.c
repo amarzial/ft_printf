@@ -72,6 +72,8 @@ int				ft_printf_unsigned_base(t_arg *arg, va_list *lst)
 		out = ft_printf_unsignedtostr_base(num, arg, "0123456789abcdef");
 	else if (arg->conversion == 'X')
 		out = ft_printf_unsignedtostr_base(num, arg, "0123456789ABCDEF");
+	else
+		return (0);
 	len = ft_strlen(out);
 	padding(out, arg, len);
 return (len);
