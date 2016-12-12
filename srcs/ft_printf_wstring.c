@@ -6,7 +6,7 @@
 /*   By: amarzial <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/11 12:10:12 by amarzial          #+#    #+#             */
-/*   Updated: 2016/12/11 17:26:59 by amarzial         ###   ########.fr       */
+/*   Updated: 2016/12/12 15:25:28 by amarzial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
@@ -37,6 +37,7 @@ static void		padding(const wchar_t *out, t_arg *arg, int len)
 	}
 	else
 		putnwstr(out, len);
+	arg->size = ft_max(len, arg->field_width);
 }
 
 int			ft_printf_wstring(t_arg *arg, va_list *lst)

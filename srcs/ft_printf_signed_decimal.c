@@ -6,7 +6,7 @@
 /*   By: amarzial <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/07 17:21:43 by amarzial          #+#    #+#             */
-/*   Updated: 2016/12/12 12:10:49 by amarzial         ###   ########.fr       */
+/*   Updated: 2016/12/12 15:27:19 by amarzial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,19 +36,8 @@ static intmax_t	fetch_int(t_arg *arg, va_list *lst)
 	return ((int)var);
 }
 
-
-
-int				ft_printf_signed_decimal(t_arg *arg, va_list *lst)
+static void		padding(char *out, t_arg *arg, int len)
 {
-	intmax_t	num;
-	char		*out;
-	int			len;
-
-	num = fetch_int(arg, lst);
-	if (arg->flag_left)
-		arg->flag_zero = 0;
-	out = ft_printf_signedtostr(num, arg);
-	len = ft_strlen(out);
 	if (arg->field_width > len)
 	{
 		if (arg->flag_left)
@@ -64,5 +53,20 @@ int				ft_printf_signed_decimal(t_arg *arg, va_list *lst)
 	}
 	else
 		ft_putstr(out);
-	return (ft_strlen(out));
+	arg->size = ft_max(len, arg->field_width);
+}
+
+int				ft_printf_signed_decimal(t_arg *arg, va_list *lst)
+{
+	intmax_t	num;
+	char		*out;
+	int			len;
+
+	num = fetch_int(arg, lst);
+	if (arg->flag_left)
+		arg->flag_zero = 0;
+	out = ft_printf_signedtostr(num, arg);
+	len = ft_strlen(out);
+	padding(out, arg, len);
+	return (len);
 }

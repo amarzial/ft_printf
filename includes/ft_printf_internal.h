@@ -6,7 +6,7 @@
 /*   By: amarzial <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/08 17:49:26 by amarzial          #+#    #+#             */
-/*   Updated: 2016/12/12 12:15:10 by amarzial         ###   ########.fr       */
+/*   Updated: 2016/12/12 15:12:37 by amarzial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ typedef struct	s_arg
 
 int				ft_printf_parse_arg(char *str, t_arg *arg);
 
-void			ft_printf_handler(t_arg *arg, va_list *lst);
+int				ft_printf_handler(t_arg *arg, va_list *lst);
 
 /* handlers */
 

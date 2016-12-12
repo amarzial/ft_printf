@@ -6,7 +6,7 @@
 /*   By: amarzial <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/06 17:46:29 by amarzial          #+#    #+#             */
-/*   Updated: 2016/12/08 17:51:50 by amarzial         ###   ########.fr       */
+/*   Updated: 2016/12/12 15:28:02 by amarzial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 extern t_handler g_table[];
 
-void	ft_printf_handler(t_arg *arg, va_list *lst)
+int		ft_printf_handler(t_arg *arg, va_list *lst)
 {
 	int i;
 
@@ -24,10 +24,8 @@ void	ft_printf_handler(t_arg *arg, va_list *lst)
 	while (g_table[i].conv != 0)
 	{
 		if (g_table[i].conv == arg->conversion)
-		{
-			g_table[i].f(arg, lst);
-			return ;
-		}
+			return (g_table[i].f(arg, lst));
 		i++;
 	}
+	return (0);
 }
