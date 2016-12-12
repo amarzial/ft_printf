@@ -42,21 +42,26 @@ INCLUDES = -I ./libft/includes/ -I ./includes
 all: $(NAME)
 
 $(NAME): $(OBJECTS) ./libft/libft.a
-	ar rc $(NAME) $(OBJECTS) $(LIBOBJS)
-	ranlib $(NAME)
+	@ echo "Creating library: $(NAME)"
+	@ ar rc $(NAME) $(OBJECTS) $(LIBOBJS)
+	@ ranlib $(NAME)
 
 %.o: $(SRCDIR)%.c
-	gcc $(CFLAGS) $< $(INCLUDES)
+	@ echo "Compiling: $<"
+	@ gcc $(CFLAGS) $< $(INCLUDES)
 
 ./libft/libft.a:
-	make -C ./libft/
+	@ make -C ./libft/
 
 clean:
-	make -C ./libft/ clean
-	rm -f $(OBJECTS)
+	@ make -C ./libft/ clean
+	@ rm -f $(OBJECTS)
+	@ echo "Clean: done"
 
 fclean: clean
-	make -C ./libft/ fclean
-	rm -f $(NAME)
+	@ make -C ./libft/ fclean
+	@ rm -f $(NAME)
+	@ echo "Fclean: done"
 
 re: fclean all
+	@ echo "Rebuild: done"
