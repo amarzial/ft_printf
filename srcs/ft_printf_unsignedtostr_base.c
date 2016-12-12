@@ -75,7 +75,7 @@ char		*ft_printf_unsignedtostr_base(intmax_t n, t_arg *arg, char *base)
 	int		len;
 	int		b;
 
-	b = strlen(base);
+	b = ft_strlen(base);
 	size = ndigits(n, b);
 	len = ft_max(size, getlen(n, arg));
 	if (!(out = ft_strnew(len)))

@@ -1,4 +1,5 @@
 CFLAGS = -c -g
+SRCDIR = ./srcs/
 SOURCES = ft_printf.c \
 		  ft_printf_parser.c \
 		  ft_printf_utils.c \
@@ -13,7 +14,49 @@ SOURCES = ft_printf.c \
 		  ft_printf_char.c \
 		  ft_printf_wchar.c \
 
-all:
-	rm -f libprintf.a
-	gcc $(CFLAGS) $(addprefix ./srcs/, $(SOURCES)) -L ../libft/ -lft -I ../libft/includes/ -I ./includes/
-	ar rc libprintf.a *.o
+LIBOBJS = ./libft/ft_bzero.o \
+		  ./libft/ft_isascii.o \
+		  ./libft/ft_isdigit.o \
+		  ./libft/ft_itoa.o \
+		  ./libft/ft_itoa_base.o \
+		  ./libft/ft_max.o \
+		  ./libft/ft_memalloc.o \
+		  ./libft/ft_memset.o \
+		  ./libft/ft_min.o \
+		  ./libft/ft_putchar.o \
+		  ./libft/ft_putstr.o \
+		  ./libft/ft_putwchar.o \
+		  ./libft/ft_putwstr.o \
+		  ./libft/ft_strchr.o \
+		  ./libft/ft_strnew.o \
+		  ./libft/ft_abs.o \
+		  ./libft/ft_atoi.o \
+		  ./libft/ft_strcat.o \
+		  ./libft/ft_strcpy.o \
+		  ./libft/ft_strlen.o \
+
+NAME = libftprintf.a
+OBJECTS = $(SOURCES:.c=.o)
+INCLUDES = -I ./libft/includes/ -I ./includes
+
+all: $(NAME)
+
+$(NAME): $(OBJECTS) ./libft/libft.a
+	ar rc $(NAME) $(OBJECTS) $(LIBOBJS)
+	ranlib $(NAME)
+
+%.o: $(SRCDIR)%.c
+	gcc $(CFLAGS) $< $(INCLUDES)
+
+./libft/libft.a:
+	make -C ./libft/
+
+clean:
+	make -C ./libft/ clean
+	rm -f $(OBJECTS)
+
+fclean: clean
+	make -C ./libft/ fclean
+	rm -f $(NAME)
+
+re: fclean all
