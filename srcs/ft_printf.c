@@ -6,14 +6,14 @@
 /*   By: amarzial <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/08 15:35:30 by amarzial          #+#    #+#             */
-/*   Updated: 2016/12/12 15:27:38 by amarzial         ###   ########.fr       */
+/*   Updated: 2016/12/13 21:51:50 by amarzial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "ft_printf_internal.h"
 
-static int		print_arg(char **str, va_list *lst)
+static int	print_arg(char **str, va_list *lst)
 {
 	t_arg	arg;
 	int		len;
@@ -25,7 +25,7 @@ static int		print_arg(char **str, va_list *lst)
 	return (arg.size);
 }
 
-int		ft_printf(const char *format, ...)
+int			ft_printf(const char *format, ...)
 {
 	va_list		lst;
 	char		*cursor;

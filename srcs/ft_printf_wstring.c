@@ -6,9 +6,10 @@
 /*   By: amarzial <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/11 12:10:12 by amarzial          #+#    #+#             */
-/*   Updated: 2016/12/12 15:25:28 by amarzial         ###   ########.fr       */
+/*   Updated: 2016/12/13 21:51:27 by amarzial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libft.h"
 #include "ft_printf_internal.h"
 
@@ -29,7 +30,7 @@ static void		padding(const wchar_t *out, t_arg *arg, int len)
 			putnwstr(out, len);
 			ft_printf_putnchar(' ', arg->field_width - len);
 		}
-		else 
+		else
 		{
 			ft_printf_putnchar(' ', arg->field_width - len);
 			putnwstr(out, len);
@@ -40,7 +41,7 @@ static void		padding(const wchar_t *out, t_arg *arg, int len)
 	arg->size = ft_max(len, arg->field_width);
 }
 
-int			ft_printf_wstring(t_arg *arg, va_list *lst)
+int				ft_printf_wstring(t_arg *arg, va_list *lst)
 {
 	const wchar_t	*str;
 	size_t			len;

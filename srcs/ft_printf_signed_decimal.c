@@ -6,7 +6,7 @@
 /*   By: amarzial <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/07 17:21:43 by amarzial          #+#    #+#             */
-/*   Updated: 2016/12/12 15:27:19 by amarzial         ###   ########.fr       */
+/*   Updated: 2016/12/13 21:41:44 by amarzial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,17 @@ static intmax_t	fetch_int(t_arg *arg, va_list *lst)
 	if (arg->conversion == 'D')
 		arg->length_mod = l;
 	if (arg->length_mod == hh)
-		return ((char) var);
+		return ((char)var);
 	else if (arg->length_mod == h)
-		return ((short int) var);
+		return ((short int)var);
 	else if (arg->length_mod == l)
-		return ((long int) var);
+		return ((long int)var);
 	else if (arg->length_mod == ll)
-		return ((long long int) var);
+		return ((long long int)var);
 	else if (arg->length_mod == j)
-		return ((intmax_t) var);
+		return ((intmax_t)var);
 	else if (arg->length_mod == z)
-		return ((ssize_t) var);
+		return ((ssize_t)var);
 	return ((int)var);
 }
 
@@ -45,7 +45,7 @@ static void		padding(char *out, t_arg *arg, int len)
 			ft_putstr(out);
 			ft_printf_putnchar(' ', arg->field_width - len);
 		}
-		else 
+		else
 		{
 			ft_printf_putnchar(' ', arg->field_width - len);
 			ft_putstr(out);

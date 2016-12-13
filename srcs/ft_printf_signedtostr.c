@@ -6,7 +6,7 @@
 /*   By: amarzial <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/06 19:53:17 by amarzial          #+#    #+#             */
-/*   Updated: 2016/12/10 13:41:45 by amarzial         ###   ########.fr       */
+/*   Updated: 2016/12/13 21:52:49 by amarzial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,8 @@ char		*ft_printf_signedtostr(intmax_t n, t_arg *arg)
 		out[len - 1] = '0';
 	else
 	{
-	while (n)
-	{
+		while (n)
+		{
 			out[len-- - 1] = ft_abs((n % 10)) + '0';
 			n /= 10;
 		}

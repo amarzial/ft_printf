@@ -6,7 +6,7 @@
 /*   By: amarzial <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/11 17:27:12 by amarzial          #+#    #+#             */
-/*   Updated: 2016/12/12 15:25:18 by amarzial         ###   ########.fr       */
+/*   Updated: 2016/12/13 21:50:58 by amarzial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 static void		padding(wchar_t out, t_arg *arg, int len)
 {
-	if (arg->prec_set)
+	if (arg->prec_set && arg->precision > 0)
 		len = ft_min(len, arg->precision);
 	if (arg->field_width > len)
 	{
@@ -24,7 +24,7 @@ static void		padding(wchar_t out, t_arg *arg, int len)
 			ft_putwchar(out);
 			ft_printf_putnchar(' ', arg->field_width - len);
 		}
-		else 
+		else
 		{
 			ft_printf_putnchar(' ', arg->field_width - len);
 			ft_putwchar(out);
@@ -35,7 +35,7 @@ static void		padding(wchar_t out, t_arg *arg, int len)
 	arg->size = ft_max(len, arg->field_width);
 }
 
-int			ft_printf_wchar(t_arg *arg, va_list *lst)
+int				ft_printf_wchar(t_arg *arg, va_list *lst)
 {
 	wchar_t		c;
 	size_t		len;

@@ -6,7 +6,7 @@
 /*   By: amarzial <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/06 17:46:29 by amarzial          #+#    #+#             */
-/*   Updated: 2016/12/12 15:28:02 by amarzial         ###   ########.fr       */
+/*   Updated: 2016/12/13 21:39:10 by amarzial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 #include "ft_printf_internal.h"
 #include "ft_printf_handler.h"
 
-extern t_handler g_table[];
+extern t_handler	g_table[];
 
-int		ft_printf_handler(t_arg *arg, va_list *lst)
+int					ft_printf_handler(t_arg *arg, va_list *lst)
 {
 	int i;
 

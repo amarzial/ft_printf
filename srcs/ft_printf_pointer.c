@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_pointer.c                         :+:      :+:    :+:   */
+/*   ft_printf_pointer.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amarzial <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/07 17:21:43 by amarzial          #+#    #+#             */
-/*   Updated: 2016/12/12 15:23:29 by amarzial         ###   ########.fr       */
+/*   Created: 2016/12/13 21:40:42 by amarzial          #+#    #+#             */
+/*   Updated: 2016/12/13 21:41:10 by amarzial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void		padding(char *out, t_arg *arg, int len)
 			ft_putstr(out);
 			ft_printf_putnchar(' ', arg->field_width - len);
 		}
-		else 
+		else
 		{
 			ft_printf_putnchar(' ', arg->field_width - len);
 			ft_putstr(out);
@@ -48,5 +48,5 @@ int				ft_printf_pointer(t_arg *arg, va_list *lst)
 	out = ft_printf_unsignedtostr_base((intmax_t)num, arg, "0123456789abcdef");
 	len = ft_strlen(out);
 	padding(out, arg, len);
-return (len);
+	return (len);
 }

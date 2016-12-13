@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_unsigned_decimal.c                         :+:      :+:    :+:   */
+/*   ft_printf_unsigned_base.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amarzial <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/07 17:21:43 by amarzial          #+#    #+#             */
-/*   Updated: 2016/12/12 15:25:49 by amarzial         ###   ########.fr       */
+/*   Created: 2016/12/13 21:49:35 by amarzial          #+#    #+#             */
+/*   Updated: 2016/12/13 21:52:19 by amarzial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,17 @@ static intmax_t	fetch_int(t_arg *arg, va_list *lst)
 	if (arg->conversion == 'O' || arg->conversion == 'U')
 		arg->length_mod = l;
 	if (arg->length_mod == hh)
-		return ((unsigned char) var);
+		return ((unsigned char)var);
 	else if (arg->length_mod == h)
-		return ((unsigned short int) var);
+		return ((unsigned short int)var);
 	else if (arg->length_mod == l)
-		return ((unsigned long int) var);
+		return ((unsigned long int)var);
 	else if (arg->length_mod == ll)
-		return ((unsigned long long int) var);
+		return ((unsigned long long int)var);
 	else if (arg->length_mod == j)
-		return ((uintmax_t) var);
+		return ((uintmax_t)var);
 	else if (arg->length_mod == z)
-		return ((size_t) var);
+		return ((size_t)var);
 	return ((unsigned int)var);
 }
 
@@ -45,7 +45,7 @@ static void		padding(char *out, t_arg *arg, int len)
 			ft_putstr(out);
 			ft_printf_putnchar(' ', arg->field_width - len);
 		}
-		else 
+		else
 		{
 			ft_printf_putnchar(' ', arg->field_width - len);
 			ft_putstr(out);
@@ -58,7 +58,7 @@ static void		padding(char *out, t_arg *arg, int len)
 
 int				ft_printf_unsigned_base(t_arg *arg, va_list *lst)
 {
-	intmax_t	num;
+	uintmax_t	num;
 	char		*out;
 	int			len;
 
@@ -77,5 +77,5 @@ int				ft_printf_unsigned_base(t_arg *arg, va_list *lst)
 		return (0);
 	len = ft_strlen(out);
 	padding(out, arg, len);
-return (len);
+	return (len);
 }

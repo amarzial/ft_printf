@@ -6,7 +6,7 @@
 /*   By: amarzial <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/06 19:53:17 by amarzial          #+#    #+#             */
-/*   Updated: 2016/12/11 11:47:50 by amarzial         ###   ########.fr       */
+/*   Updated: 2016/12/13 21:34:10 by amarzial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "libft.h"
 #include "ft_printf_internal.h"
 
-static int	ndigits(intmax_t n, int base)
+static int	ndigits(uintmax_t n, int base)
 {
 	int	ret;
 
@@ -67,7 +67,7 @@ static char	*prefix(char *str, t_arg *arg)
 	return (out);
 }
 
-char		*ft_printf_unsignedtostr_base(intmax_t n, t_arg *arg, char *base)
+char		*ft_printf_unsignedtostr_base(uintmax_t n, t_arg *arg, char *base)
 {
 	char	*out;
 	int		index;
