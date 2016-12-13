@@ -6,7 +6,7 @@
 /*   By: amarzial <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/07 17:58:05 by amarzial          #+#    #+#             */
-/*   Updated: 2016/12/13 16:38:37 by amarzial         ###   ########.fr       */
+/*   Updated: 2016/12/13 16:55:53 by amarzial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,8 @@ static int	parse_flag(char *str, t_arg *arg)
 {
 	int cnt;
 
-	if (!*str)
-		return (0);
 	cnt = 0;
-	while (ft_strchr(FT_PRINTF_FLAGS, str[cnt]))
+	while (str[cnt] && ft_strchr(FT_PRINTF_FLAGS, str[cnt]))
 	{
 		if (str[cnt] == '#')
 			arg->flag_alt = 1;
@@ -85,7 +83,7 @@ int			ft_printf_parse_arg(char *str, t_arg *arg)
 			cnt++;
 	}
 	cnt += parse_len(str + cnt, arg);
-	if (ft_strchr(FT_PRINTF_CONVERSION, str[cnt]))
-		arg->conversion = str[cnt];
-	return (cnt + 2);
+	if (str[cnt] && ft_strchr(FT_PRINTF_CONVERSION, str[cnt]))
+		arg->conversion = str[cnt++];
+	return (cnt + 1);
 }
