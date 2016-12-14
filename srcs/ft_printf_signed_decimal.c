@@ -6,7 +6,7 @@
 /*   By: amarzial <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/07 17:21:43 by amarzial          #+#    #+#             */
-/*   Updated: 2016/12/13 21:41:44 by amarzial         ###   ########.fr       */
+/*   Updated: 2016/12/14 13:16:17 by amarzial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,11 @@ static void		padding(char *out, t_arg *arg, int len)
 	arg->size = ft_max(len, arg->field_width);
 }
 
+static int		printdecimal(char *num, t_arg *arg, int len)
+{
+	
+}
+
 int				ft_printf_signed_decimal(t_arg *arg, va_list *lst)
 {
 	intmax_t	num;
@@ -63,6 +68,9 @@ int				ft_printf_signed_decimal(t_arg *arg, va_list *lst)
 	int			len;
 
 	num = fetch_int(arg, lst);
+	len = ft_max(arg->field_width, \
+	ft_max(signeddigits(num), arg->precision) + (num < 0 ? 1 : 0));
+	out = ft_strnew(len);
 	if (arg->flag_left)
 		arg->flag_zero = 0;
 	out = ft_printf_signedtostr(num, arg);

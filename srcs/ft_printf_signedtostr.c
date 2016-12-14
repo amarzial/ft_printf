@@ -6,7 +6,7 @@
 /*   By: amarzial <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/06 19:53:17 by amarzial          #+#    #+#             */
-/*   Updated: 2016/12/13 21:52:49 by amarzial         ###   ########.fr       */
+/*   Updated: 2016/12/14 13:16:21 by amarzial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,6 @@
 #include "libft.h"
 #include "ft_printf_internal.h"
 
-static int	ndigits(intmax_t n)
-{
-	int	ret;
-
-	if (n == 0)
-		return (1);
-	ret = 0;
-	while (n)
-	{
-		ret++;
-		n /= 10;
-	}
-	return (ret);
-}
 
 static int	getlen(intmax_t num, t_arg *arg)
 {
