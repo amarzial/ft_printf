@@ -6,7 +6,7 @@
 /*   By: amarzial <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/07 17:21:43 by amarzial          #+#    #+#             */
-/*   Updated: 2016/12/14 19:02:24 by amarzial         ###   ########.fr       */
+/*   Updated: 2016/12/14 19:30:27 by amarzial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int				ft_printf_signed_decimal(t_arg *arg, va_list *lst)
 	int			len;
 
 	num = fetch_int(arg, lst);
-	len = ft_max(signeddigits(num), arg->precision) \
+	len = ft_max(signeddigits(num, 10), arg->precision) \
 			+ ((num < 0 || arg->flag_sign || arg->flag_space) ? 1 : 0);
 	if (num == 0 && arg->prec_set && arg->precision == 0)
 		len--;

@@ -6,28 +6,13 @@
 /*   By: amarzial <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/06 19:53:17 by amarzial          #+#    #+#             */
-/*   Updated: 2016/12/13 22:10:31 by amarzial         ###   ########.fr       */
+/*   Updated: 2016/12/14 19:29:12 by amarzial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdint.h>
 #include "libft.h"
 #include "ft_printf_internal.h"
-
-static int	ndigits(uintmax_t n, int base)
-{
-	int	ret;
-
-	if (n == 0)
-		return (1);
-	ret = 0;
-	while (n)
-	{
-		ret++;
-		n /= base;
-	}
-	return (ret);
-}
 
 static int	getlen(t_arg *arg)
 {
