@@ -6,7 +6,7 @@
 /*   By: amarzial <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/08 17:49:26 by amarzial          #+#    #+#             */
-/*   Updated: 2016/12/14 12:45:41 by amarzial         ###   ########.fr       */
+/*   Updated: 2016/12/14 17:50:55 by amarzial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int				ft_printf_wchar(t_arg *arg, va_list *lst);
 /* print */
 
 void			ft_printf_putnchar(char c, int times);
-char			*ft_printf_signedtostr(intmax_t num, t_arg *arg);
+void			ft_printf_signedtostr(char *out, intmax_t num, t_arg *arg);
 char			*ft_printf_unsignedtostr_base(uintmax_t num, t_arg *arg, \
 												char *base);
 

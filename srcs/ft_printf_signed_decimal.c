@@ -6,7 +6,7 @@
 /*   By: amarzial <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/07 17:21:43 by amarzial          #+#    #+#             */
-/*   Updated: 2016/12/14 13:16:17 by amarzial         ###   ########.fr       */
+/*   Updated: 2016/12/14 19:02:24 by amarzial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,29 +36,27 @@ static intmax_t	fetch_int(t_arg *arg, va_list *lst)
 	return ((int)var);
 }
 
-static void		padding(char *out, t_arg *arg, int len)
+static void		padding(char *out, int len, t_arg *arg)
 {
-	if (arg->field_width > len)
+	int	offset;
+
+	offset = 0;
+	if (arg->size > len)
 	{
 		if (arg->flag_left)
 		{
-			ft_putstr(out);
-			ft_printf_putnchar(' ', arg->field_width - len);
+			ft_memmove(out, out + (arg->size - len), len);
+			ft_memset(out + len, ' ', arg->size - len);
+		}
+		else if (arg->flag_zero)
+		{
+			if (!(ft_isdigit(out[arg->size - len])))
+				out[offset++] = out[arg->size - len];
+			ft_memset(out + offset, '0', arg->size - len);
 		}
 		else
-		{
-			ft_printf_putnchar(' ', arg->field_width - len);
-			ft_putstr(out);
-		}
+			ft_memset(out, ' ', arg->size - len);
 	}
-	else
-		ft_putstr(out);
-	arg->size = ft_max(len, arg->field_width);
-}
-
-static int		printdecimal(char *num, t_arg *arg, int len)
-{
-	
 }
 
 int				ft_printf_signed_decimal(t_arg *arg, va_list *lst)
@@ -68,13 +66,17 @@ int				ft_printf_signed_decimal(t_arg *arg, va_list *lst)
 	int			len;
 
 	num = fetch_int(arg, lst);
-	len = ft_max(arg->field_width, \
-	ft_max(signeddigits(num), arg->precision) + (num < 0 ? 1 : 0));
-	out = ft_strnew(len);
-	if (arg->flag_left)
+	len = ft_max(signeddigits(num), arg->precision) \
+			+ ((num < 0 || arg->flag_sign || arg->flag_space) ? 1 : 0);
+	if (num == 0 && arg->prec_set && arg->precision == 0)
+		len--;
+	arg->size = ft_max(arg->field_width, len);
+	out = ft_strnew(arg->size);
+	if (arg->flag_left || arg->prec_set)
 		arg->flag_zero = 0;
-	out = ft_printf_signedtostr(num, arg);
+	ft_printf_signedtostr(out + (arg->size - len), num, arg);
+	padding(out, len, arg);
+	ft_putstr(out);
 	len = ft_strlen(out);
-	padding(out, arg, len);
 	return (len);
 }

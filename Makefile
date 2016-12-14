@@ -34,6 +34,7 @@ LIBOBJS = ./libft/ft_bzero.o \
 		  ./libft/ft_strcat.o \
 		  ./libft/ft_strcpy.o \
 		  ./libft/ft_strlen.o \
+		  ./libft/ft_memmove.o \
 
 NAME = libftprintf.a
 OBJECTS = $(SOURCES:.c=.o)
