@@ -52,11 +52,13 @@ static char		*getprefix(t_arg *arg)
 	return ("");
 }
 
-static void		padding(char *out, int len, t_arg *arg)
+static void		padding(char *out, int len, t_arg *arg, uintmax_t num)
 {
 	int	offset;
 
 	offset = ft_strlen(getprefix(arg));
+	if (!num)
+		offset = 0;
 	if (arg->flag_alt && len)
 	{
 		ft_memcpy(out + (arg->size - len - offset), getprefix(arg), offset);
@@ -106,11 +108,12 @@ int				ft_printf_unsigned_base(t_arg *arg, va_list *lst)
 	len = ft_max(unsigneddigits(num, b), arg->precision);
 	if (num == 0 && arg->prec_set && arg->precision == 0)
 		len--;
-	arg->size = ft_max(arg->field_width, len + ft_strlen(getprefix(arg)));
+	arg->size = ft_max(arg->field_width, len + \
+	((num) ? ft_strlen(getprefix(arg)) : 0));
 	out = ft_strnew(arg->size);
 	ft_printf_unsignedtostr_base(out + (arg->size - len), num, arg, getb(arg));
-	padding(out, len, arg);
-	ft_putstr(out);
+	padding(out, len, arg, num);
 	len = ft_strlen(out);
+	ft_putstr(out);
 	return (len);
 }
