@@ -21,6 +21,7 @@ LIBOBJS = ./libft/ft_bzero.o \
 		  ./libft/ft_max.o \
 		  ./libft/ft_memalloc.o \
 		  ./libft/ft_memset.o \
+		  ./libft/ft_memcpy.o \
 		  ./libft/ft_min.o \
 		  ./libft/ft_putchar.o \
 		  ./libft/ft_putstr.o \

@@ -108,6 +108,7 @@ int				ft_printf_unsigned_base(t_arg *arg, va_list *lst)
 	out = ft_strnew(arg->size);
 	ft_printf_unsignedtostr_base(out + (arg->size - len), num, arg, getb(arg));
 	padding(out, len, arg);
+	ft_putstr(out);
 	len = ft_strlen(out);
 	return (len);
 }
