@@ -6,7 +6,7 @@
 /*   By: amarzial <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/13 21:49:35 by amarzial          #+#    #+#             */
-/*   Updated: 2016/12/15 16:27:04 by amarzial         ###   ########.fr       */
+/*   Updated: 2016/12/15 20:47:33 by amarzial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,8 @@ static void		padding(char *out, int len, t_arg *arg, uintmax_t num)
 		}
 		else if (arg->flag_zero)
 		{
-			ft_memset(out + offset, '0', arg->size - len - offset);
+			ft_memmove(out, out + (arg->size - len), offset);
+			ft_memset(out + offset, '0', arg->size - len);
 		}
 		else
 			ft_memset(out, ' ', arg->size - len);
