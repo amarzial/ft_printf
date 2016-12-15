@@ -104,7 +104,7 @@ int				ft_printf_unsigned_base(t_arg *arg, va_list *lst)
 	len = ft_max(unsigneddigits(num, b), arg->precision);
 	if (num == 0 && arg->prec_set && arg->precision == 0)
 		len--;
-	arg->size = ft_max(arg->field_width, len + strlen(getprefix(arg)));
+	arg->size = ft_max(arg->field_width, len + ft_strlen(getprefix(arg)));
 	out = ft_strnew(arg->size);
 	ft_printf_unsignedtostr_base(out + (arg->size - len), num, arg, getb(arg));
 	padding(out, len, arg);
