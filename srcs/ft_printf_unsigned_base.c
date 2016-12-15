@@ -6,7 +6,7 @@
 /*   By: amarzial <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/13 21:49:35 by amarzial          #+#    #+#             */
-/*   Updated: 2016/12/15 11:52:51 by amarzial         ###   ########.fr       */
+/*   Updated: 2016/12/15 12:29:52 by amarzial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,16 @@ static intmax_t	fetch_int(t_arg *arg, va_list *lst)
 
 static char		*getprefix(t_arg *arg)
 {
-	if (arg->conversion == 'o')
-		return ("0");
-	else if (arg->conversion == 'x' || arg->conversion == 'p')
-		return ("0x");
-	else if (arg->conversion == 'X')
-		return ("0X");
-	else
-		return ("");
+	if (arg->flag_alt)
+	{
+		if (arg->conversion == 'o')
+			return ("0");
+		else if (arg->conversion == 'x' || arg->conversion == 'p')
+			return ("0x");
+		else if (arg->conversion == 'X')
+			return ("0X");
+	}
+	return ("");
 }
 
 static void		padding(char *out, int len, t_arg *arg)
