@@ -6,7 +6,7 @@
 /*   By: amarzial <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/08 17:49:26 by amarzial          #+#    #+#             */
-/*   Updated: 2016/12/14 19:30:58 by amarzial         ###   ########.fr       */
+/*   Updated: 2016/12/15 11:51:07 by amarzial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ int				ft_printf_handler(t_arg *arg, va_list *lst);
 
 int				ft_printf_signed_decimal(t_arg *arg, va_list *lst);
 int				ft_printf_unsigned_base(t_arg *arg, va_list *lst);
-int				ft_printf_pointer(t_arg *arg, va_list *lst);
 int				ft_printf_string(t_arg *arg, va_list *lst);
 int				ft_printf_wstring(t_arg *arg, va_list *lst);
 int				ft_printf_char(t_arg *arg, va_list *lst);
@@ -61,8 +60,8 @@ int				ft_printf_wchar(t_arg *arg, va_list *lst);
 
 void			ft_printf_putnchar(char c, int times);
 void			ft_printf_signedtostr(char *out, intmax_t num, t_arg *arg);
-char			*ft_printf_unsignedtostr_base(uintmax_t num, t_arg *arg, \
-												char *base);
+void			ft_printf_unsignedtostr_base(char *out, uintmax_t num, \
+t_arg *arg, char *base);
 
 /* /print */
 /* utilities */
