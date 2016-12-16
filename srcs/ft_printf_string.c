@@ -6,7 +6,7 @@
 /*   By: amarzial <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/11 12:10:12 by amarzial          #+#    #+#             */
-/*   Updated: 2016/12/15 21:22:56 by amarzial         ###   ########.fr       */
+/*   Updated: 2016/12/16 12:31:01 by amarzial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ int				ft_printf_string(t_arg *arg, va_list *lst)
 	if (arg->length_mod == l)
 		return (ft_printf_wstring(arg, lst));
 	str = va_arg(*lst, char*);
+	if (!str)
+		str = "(null)";
 	len = ft_strlen(str);
 	padding(str, arg, len);
 	return (len);
