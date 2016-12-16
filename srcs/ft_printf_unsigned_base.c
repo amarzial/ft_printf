@@ -42,7 +42,7 @@ static char		*getprefix(t_arg *arg)
 {
 	if (arg->flag_alt)
 	{
-		if (arg->conversion == 'o')
+		if (arg->conversion == 'o' || arg->conversion == 'O')
 			return ("0");
 		else if (arg->conversion == 'x' || arg->conversion == 'p')
 			return ("0x");
@@ -83,9 +83,9 @@ static void		padding(char *out, int len, t_arg *arg, uintmax_t num)
 
 static char		*getb(t_arg *arg)
 {
-	if (arg->conversion == 'o')
+	if (arg->conversion == 'o' || arg->conversion == 'O')
 		return ("01234567");
-	else if (arg->conversion == 'u')
+	else if (arg->conversion == 'u' || arg->conversion == 'U')
 		return ("0123456789");
 	else if (arg->conversion == 'x' || arg->conversion == 'p')
 		return ("0123456789abcdef");
@@ -107,6 +107,8 @@ int				ft_printf_unsigned_base(t_arg *arg, va_list *lst)
 	if (arg->flag_left)
 		arg->flag_zero = 0;
 	len = ft_max(unsigneddigits(num, b), arg->precision);
+	if (arg->conversion == 'o' && arg->prec_set && arg->precision == 0)
+		arg->precision = arg->flag_alt;
 	if (num == 0 && arg->prec_set && arg->precision == 0)
 		len--;
 	arg->size = ft_max(arg->field_width, len + \

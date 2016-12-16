@@ -43,7 +43,7 @@ int				ft_printf_string(t_arg *arg, va_list *lst)
 	if (arg->length_mod == l)
 		return (ft_printf_wstring(arg, lst));
 	str = va_arg(*lst, char*);
-	if (!str)
+	if (str == NULL)
 		str = "(null)";
 	len = ft_strlen(str);
 	padding(str, arg, len);
