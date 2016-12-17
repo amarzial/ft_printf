@@ -6,7 +6,7 @@
 /*   By: amarzial <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/07 17:58:05 by amarzial          #+#    #+#             */
-/*   Updated: 2016/12/13 16:55:53 by amarzial         ###   ########.fr       */
+/*   Updated: 2016/12/17 17:07:12 by amarzial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,48 +42,71 @@ static int	parse_len(char *str, t_arg *arg)
 
 static int	parse_flag(char *str, t_arg *arg)
 {
-	int cnt;
+	if (*str == '#')
+		arg->flag_alt = 1;
+	else if (*str == '0')
+		arg->flag_zero = 1;
+	else if (*str == '-')
+		arg->flag_left = 1;
+	else if (*str == ' ')
+		arg->flag_space = 1;
+	else if (*str == '+')
+		arg->flag_sign = 1;
+	else
+		return (0);
+	return (1);
+}
 
-	cnt = 0;
-	while (str[cnt] && ft_strchr(FT_PRINTF_FLAGS, str[cnt]))
+static int	parse_num(char *str, t_arg *arg)
+{
+	if (*str == '.')
 	{
-		if (str[cnt] == '#')
-			arg->flag_alt = 1;
-		else if (str[cnt] == '0')
-			arg->flag_zero = 1;
-		else if (str[cnt] == '-')
-			arg->flag_left = 1;
-		else if (str[cnt] == ' ')
-			arg->flag_space = 1;
-		else if (str[cnt] == '+')
-			arg->flag_sign = 1;
-		cnt++;
+		arg->prec_set = 1;
+		arg->precision = ft_atoi(str + 1);
+		arg->precision = (arg->precision < 0) ? 0 : arg->precision;
+		return (1 + idigits(arg->precision, 10) - (ft_isdigit(str[1]) ? 0 : 1));
 	}
-	return (cnt);
+	else if (ft_isdigit(*str))
+	{
+		arg->field_width = ft_atoi(str);
+		return (idigits(arg->field_width, 10));
+	}
+	return (0);
+}
+
+static int	parse(char *str, t_arg *arg, int len)
+{
+	int		idx;
+	int		cnt;
+
+	idx = 0;
+	while (idx < len)
+	{
+		if ((cnt = parse_flag(str + idx, arg)) && (idx += cnt))
+			continue ;
+		else if ((cnt = parse_len(str + idx, arg)) && (idx += cnt))
+			continue ;
+		else if ((cnt = parse_num(str + idx, arg)) && (idx += cnt))
+			continue ;
+		return (0);
+	}
+	return (1);
 }
 
 int			ft_printf_parse_arg(char *str, t_arg *arg)
 {
-	int	cnt;
+	int		idx;
 
-	str++;
-	if (!*str)
-		return (1);
-	cnt = 0;
-	cnt += parse_flag(str, arg);
-	if (ft_isdigit(str[cnt]))
-		arg->field_width = ft_atoi(str + cnt);
-	while (ft_isdigit(str[cnt]))
-		cnt++;
-	if (str[cnt] == '.')
+	idx = 1;
+	while (str[idx] && !ft_strchr(FT_PRINTF_CONVERSION, str[idx]))
 	{
-		arg->prec_set = 1;
-		arg->precision = ft_atoi(str + ++cnt);
-		while (ft_isdigit(str[cnt]))
-			cnt++;
+		if (!ft_strchr(FT_PRINTF_CSET, str[idx]))
+			return (idx);
+		idx++;
 	}
-	cnt += parse_len(str + cnt, arg);
-	if (str[cnt] && ft_strchr(FT_PRINTF_CONVERSION, str[cnt]))
-		arg->conversion = str[cnt++];
-	return (cnt + 1);
+	if (!str[idx])
+		return (idx);
+	arg->conversion = str[idx];
+	parse(str + 1, arg, idx - 1);
+	return (idx + 1);
 }

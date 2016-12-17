@@ -6,7 +6,7 @@
 /*   By: amarzial <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/06 11:59:55 by amarzial          #+#    #+#             */
-/*   Updated: 2016/12/11 16:58:28 by amarzial         ###   ########.fr       */
+/*   Updated: 2016/12/17 20:23:16 by amarzial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # define GET_LINE_BUFF_SIZE 32
 # include "libft.h"
 
-typedef struct	s_reader
+typedef struct			s_reader
 {
 	int		fd;
 	char	*buffer;
@@ -31,7 +31,7 @@ typedef struct	s_reader
 	int		stop;
 	size_t	r_size;
 	size_t	b_size;
-}				t_reader;
+}						t_reader;
 
 typedef struct			s_list
 {
@@ -105,8 +105,9 @@ void					ft_lstadd(t_list **alst, t_list *new);
 void					ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list					*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 
-/* My extra functions */
-
+/*
+** My extra functions
+*/
 int						ft_abs(int nb);
 void					ft_putptr(void *ptr);
 char					*ft_itoa_base(t_putnbr n, int base);

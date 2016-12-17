@@ -6,7 +6,7 @@
 /*   By: amarzial <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/11 17:27:12 by amarzial          #+#    #+#             */
-/*   Updated: 2016/12/13 21:50:58 by amarzial         ###   ########.fr       */
+/*   Updated: 2016/12/17 19:38:27 by amarzial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,9 @@
 
 static void		padding(wchar_t out, t_arg *arg, int len)
 {
+	char	fill;
+
+	fill = arg->flag_zero ? '0' : ' ';
 	if (arg->prec_set && arg->precision > 0)
 		len = ft_min(len, arg->precision);
 	if (arg->field_width > len)
@@ -22,11 +25,11 @@ static void		padding(wchar_t out, t_arg *arg, int len)
 		if (arg->flag_left)
 		{
 			ft_putwchar(out);
-			ft_printf_putnchar(' ', arg->field_width - len);
+			ft_printf_putnchar(fill, arg->field_width - len);
 		}
 		else
 		{
-			ft_printf_putnchar(' ', arg->field_width - len);
+			ft_printf_putnchar(fill, arg->field_width - len);
 			ft_putwchar(out);
 		}
 	}
@@ -41,7 +44,16 @@ int				ft_printf_wchar(t_arg *arg, va_list *lst)
 	size_t		len;
 
 	c = va_arg(*lst, wchar_t);
-	len = 1;
+	if (c < 0x80)
+		len = 1;
+	else if (c < 0x800)
+		len = 2;
+	else if (c < 0x10000)
+		len = 3;
+	else if (c <= 0x10ffff)
+		len = 4;
+	else
+		len = 0;
 	padding(c, arg, len);
 	return (len);
 }

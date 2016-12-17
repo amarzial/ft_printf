@@ -6,11 +6,12 @@
 /*   By: amarzial <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/11 13:00:42 by amarzial          #+#    #+#             */
-/*   Updated: 2016/12/11 16:37:59 by amarzial         ###   ########.fr       */
+/*   Updated: 2016/12/17 20:24:04 by amarzial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
 static int	bitcount(wchar_t c)
 {
 	if (c >= 0x80 && c <= 0x7FF)

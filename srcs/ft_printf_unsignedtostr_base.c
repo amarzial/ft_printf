@@ -6,7 +6,7 @@
 /*   By: amarzial <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/06 19:53:17 by amarzial          #+#    #+#             */
-/*   Updated: 2016/12/15 15:54:58 by amarzial         ###   ########.fr       */
+/*   Updated: 2016/12/17 16:18:37 by amarzial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_arg *arg, char *base)
 	int		b;
 
 	b = ft_strlen(base);
-	len = unsigneddigits(n, b);
+	len = udigits(n, b);
 	size = ft_max(len, arg->precision);
 	index = 0;
 	while (index < size - len)

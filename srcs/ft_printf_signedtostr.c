@@ -6,7 +6,7 @@
 /*   By: amarzial <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/06 19:53:17 by amarzial          #+#    #+#             */
-/*   Updated: 2016/12/15 10:45:10 by amarzial         ###   ########.fr       */
+/*   Updated: 2016/12/17 16:19:18 by amarzial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void		ft_printf_signedtostr(char *out, intmax_t n, t_arg *arg)
 	int		size;
 	int		len;
 
-	len = signeddigits(n, 10);
+	len = idigits(n, 10);
 	size = getlen(len, n, arg);
 	index = 0;
 	index += putmodifiers(out + index, n, arg);

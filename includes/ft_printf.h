@@ -6,11 +6,12 @@
 /*   By: amarzial <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/04 13:29:21 by amarzial          #+#    #+#             */
-/*   Updated: 2016/12/08 17:53:47 by amarzial         ###   ########.fr       */
+/*   Updated: 2016/12/17 20:13:35 by amarzial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 
 int				ft_printf(const char *format, ...);
 

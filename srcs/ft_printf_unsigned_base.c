@@ -6,7 +6,7 @@
 /*   By: amarzial <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/13 21:49:35 by amarzial          #+#    #+#             */
-/*   Updated: 2016/12/16 14:57:36 by amarzial         ###   ########.fr       */
+/*   Updated: 2016/12/17 20:33:06 by amarzial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 #include "libft.h"
 #include "ft_printf_internal.h"
 
-static intmax_t	fetch_int(t_arg *arg, va_list *lst)
+static uintmax_t	fetch_int(t_arg *arg, va_list *lst)
 {
-	intmax_t	var;
+	uintmax_t	var;
 
 	var = va_arg(*lst, uintmax_t);
 	if (arg->conversion == 'O' || arg->conversion == 'U')
@@ -38,7 +38,7 @@ static intmax_t	fetch_int(t_arg *arg, va_list *lst)
 	return ((unsigned int)var);
 }
 
-static char		*getprefix(t_arg *arg)
+static char			*getprefix(t_arg *arg)
 {
 	if (arg->flag_alt)
 	{
@@ -52,7 +52,7 @@ static char		*getprefix(t_arg *arg)
 	return ("");
 }
 
-static void		padding(char *out, int len, t_arg *arg, uintmax_t num)
+static void			padding(char *out, int len, t_arg *arg, uintmax_t num)
 {
 	int	offset;
 
@@ -81,7 +81,7 @@ static void		padding(char *out, int len, t_arg *arg, uintmax_t num)
 	}
 }
 
-static char		*getb(t_arg *arg)
+static char			*getb(t_arg *arg)
 {
 	if (arg->conversion == 'o' || arg->conversion == 'O')
 		return ("01234567");
@@ -95,7 +95,7 @@ static char		*getb(t_arg *arg)
 		return (0);
 }
 
-int				ft_printf_unsigned_base(t_arg *arg, va_list *lst)
+int					ft_printf_unsigned_base(t_arg *arg, va_list *lst)
 {
 	uintmax_t	num;
 	char		*out;
@@ -106,7 +106,7 @@ int				ft_printf_unsigned_base(t_arg *arg, va_list *lst)
 	num = fetch_int(arg, lst);
 	if (arg->flag_left)
 		arg->flag_zero = 0;
-	len = ft_max(unsigneddigits(num, b), arg->precision);
+	len = ft_max(udigits(num, b), arg->precision);
 	if (arg->conversion == 'o' && arg->prec_set && arg->precision == 0)
 		arg->precision = arg->flag_alt;
 	if (num == 0 && arg->prec_set && arg->precision == 0)

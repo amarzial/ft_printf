@@ -6,13 +6,13 @@
 /*   By: amarzial <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/08 14:58:20 by amarzial          #+#    #+#             */
-/*   Updated: 2016/12/17 14:39:44 by amarzial         ###   ########.fr       */
+/*   Updated: 2016/12/17 20:13:48 by amarzial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_HANDLER_H
 # define FT_PRINTF_HANDLER_H
-#include "ft_printf.h"
+# include "ft_printf.h"
 
 typedef int		(*t_func)(t_arg*, va_list*);
 
