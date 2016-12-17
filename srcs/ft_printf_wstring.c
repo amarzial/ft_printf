@@ -6,7 +6,7 @@
 /*   By: amarzial <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/11 12:10:12 by amarzial          #+#    #+#             */
-/*   Updated: 2016/12/17 20:28:34 by amarzial         ###   ########.fr       */
+/*   Updated: 2016/12/17 20:48:02 by amarzial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,4 +72,31 @@ static void		padding(const wchar_t *out, t_arg *arg, int len)
 	else
 		putnwstr(out, wch);
 	arg->size = ft_max(len, arg->field_width);
+}
+
+int				ft_printf_wstring(t_arg *arg, va_list *lst)
+{
+	const wchar_t	*str;
+	const wchar_t	*cur;
+	size_t			len;
+
+	str = va_arg(*lst, wchar_t*);
+	len = 0;
+	cur = str;
+	while (*cur)
+	{
+		if (*cur < 0x80)
+			len += 1;
+		else if (*cur < 0x800)
+			len += 2;
+		else if (*cur < 0x10000)
+			len = 3;
+		else if (*cur <= 0x10ffff)
+			len = 4;
+		else
+			len = 0;
+		cur++;
+	}
+	padding(str, arg, len);
+	return (len);
 }
