@@ -6,7 +6,7 @@
 /*   By: amarzial <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/11 12:10:12 by amarzial          #+#    #+#             */
-/*   Updated: 2016/12/17 20:48:02 by amarzial         ###   ########.fr       */
+/*   Updated: 2016/12/17 20:54:44 by amarzial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,9 +90,9 @@ int				ft_printf_wstring(t_arg *arg, va_list *lst)
 		else if (*cur < 0x800)
 			len += 2;
 		else if (*cur < 0x10000)
-			len = 3;
+			len += 3;
 		else if (*cur <= 0x10ffff)
-			len = 4;
+			len += 4;
 		else
 			len = 0;
 		cur++;

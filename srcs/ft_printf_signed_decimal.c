@@ -6,7 +6,7 @@
 /*   By: amarzial <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/07 17:21:43 by amarzial          #+#    #+#             */
-/*   Updated: 2016/12/17 16:19:07 by amarzial         ###   ########.fr       */
+/*   Updated: 2016/12/17 20:57:24 by amarzial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,12 +71,14 @@ int				ft_printf_signed_decimal(t_arg *arg, va_list *lst)
 	if (num == 0 && arg->prec_set && arg->precision == 0)
 		len--;
 	arg->size = ft_max(arg->field_width, len);
-	out = ft_strnew(arg->size);
+	if (!(out = ft_strnew(arg->size)))
+		return (0);
 	if (arg->flag_left || arg->prec_set)
 		arg->flag_zero = 0;
 	ft_printf_signedtostr(out + (arg->size - len), num, arg);
 	padding(out, len, arg);
 	ft_putstr(out);
 	len = ft_strlen(out);
+	free(out);
 	return (len);
 }

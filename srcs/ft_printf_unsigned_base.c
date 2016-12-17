@@ -6,7 +6,7 @@
 /*   By: amarzial <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/13 21:49:35 by amarzial          #+#    #+#             */
-/*   Updated: 2016/12/17 20:33:06 by amarzial         ###   ########.fr       */
+/*   Updated: 2016/12/17 20:58:20 by amarzial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,10 +113,12 @@ int					ft_printf_unsigned_base(t_arg *arg, va_list *lst)
 		len--;
 	arg->size = ft_max(arg->field_width, len + \
 	((num || arg->conversion == 'p') ? ft_strlen(getprefix(arg)) : 0));
-	out = ft_strnew(arg->size);
+	if (!(out = ft_strnew(arg->size)))
+		return (0);
 	ft_printf_unsignedtostr_base(out + (arg->size - len), num, arg, getb(arg));
 	padding(out, len, arg, num);
 	len = ft_strlen(out);
 	ft_putstr(out);
+	free(out);
 	return (len);
 }
