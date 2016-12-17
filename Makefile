@@ -36,6 +36,10 @@ LIBOBJS = ./libft/ft_bzero.o \
 		  ./libft/ft_strlen.o \
 		  ./libft/ft_memmove.o \
 
+HEADERS = ./includes/ft_printf.h \
+		  ./includes/ft_printf_handler.h \
+		  ./includes/ft_printf_internal.h
+
 NAME = libftprintf.a
 OBJECTS = $(SOURCES:.c=.o)
 INCLUDES = -I ./libft/includes/ -I ./includes
@@ -47,7 +51,7 @@ $(NAME): $(OBJECTS) ./libft/libft.a
 	@ ar rc $(NAME) $(OBJECTS) $(LIBOBJS)
 	@ ranlib $(NAME)
 
-%.o: $(SRCDIR)%.c
+%.o: $(SRCDIR)%.c $(HEADERS)
 	@ echo "Compiling: $<"
 	@ gcc $(CFLAGS) $< $(INCLUDES)
 
