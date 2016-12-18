@@ -27,6 +27,7 @@ int					ft_printf_handler(t_arg *arg, va_list *lst)
 			return (g_table[i].f(arg, lst));
 		i++;
 	}
-	ft_printf_noconv(arg, lst);
+	if (arg->conversion)
+		ft_printf_noconv(arg, lst);
 	return (0);
 }

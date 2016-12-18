@@ -98,17 +98,19 @@ static int	parse(char *str, t_arg *arg, int len)
 int			ft_printf_parse_arg(char *str, t_arg *arg)
 {
 	int		idx;
+	int		isconv;
 
 	idx = 1;
+	isconv = 1;
 	while (str[idx] && !ft_strchr(FT_PRINTF_CONVERSION, str[idx]))
 	{
-		if (!ft_strchr(FT_PRINTF_CSET, str[idx]))
-			return (idx);
+		if (!ft_strchr(FT_PRINTF_CSET, str[idx]) && !(isconv = 0))
+			break ;
 		idx++;
 	}
-	if (!str[idx])
-		return (idx);
 	arg->conversion = str[idx];
 	parse(str + 1, arg, idx - 1);
+	if (!str[idx] || !isconv)
+		idx--;
 	return (idx + 1);
 }
