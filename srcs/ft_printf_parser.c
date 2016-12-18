@@ -6,7 +6,7 @@
 /*   By: amarzial <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/07 17:58:05 by amarzial          #+#    #+#             */
-/*   Updated: 2016/12/17 17:07:12 by amarzial         ###   ########.fr       */
+/*   Updated: 2016/12/18 20:36:53 by amarzial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,8 @@ static int	parse(char *str, t_arg *arg, int len)
 			continue ;
 		return (0);
 	}
+	if (arg->flag_left)
+		arg->flag_zero = 0;
 	return (1);
 }
 
