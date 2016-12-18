@@ -110,7 +110,7 @@ int			ft_printf_parse_arg(char *str, t_arg *arg)
 	}
 	arg->conversion = str[idx];
 	parse(str + 1, arg, idx - 1);
-	if (!str[idx] || !isconv)
+	if (!str[idx])
 		idx--;
 	return (idx + 1);
 }

@@ -59,7 +59,7 @@ static void			padding(char *out, int len, t_arg *arg, uintmax_t num)
 	offset = ft_strlen(getprefix(arg));
 	if (!num && arg->conversion != 'p')
 		offset = 0;
-	if (arg->flag_alt && len)
+	if ((arg->flag_alt && len) || arg->conversion == 'p')
 	{
 		ft_memcpy(out + (arg->size - len - offset), getprefix(arg), offset);
 		len += offset;
@@ -107,7 +107,8 @@ int					ft_printf_unsigned_base(t_arg *arg, va_list *lst)
 	if (arg->flag_left)
 		arg->flag_zero = 0;
 	len = ft_max(udigits(num, b), arg->precision);
-	if (arg->conversion == 'o' && arg->prec_set && arg->precision == 0)
+	if ((arg->conversion == 'o' || arg->conversion == 'O') && \
+	arg->prec_set && arg->precision == 0)
 		arg->precision = arg->flag_alt;
 	if (num == 0 && arg->prec_set && arg->precision == 0)
 		len--;
