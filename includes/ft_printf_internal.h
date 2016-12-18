@@ -54,6 +54,7 @@ int				ft_printf_string(t_arg *arg, va_list *lst);
 int				ft_printf_wstring(t_arg *arg, va_list *lst);
 int				ft_printf_char(t_arg *arg, va_list *lst);
 int				ft_printf_wchar(t_arg *arg, va_list *lst);
+int				ft_printf_noconv(t_arg *arg, va_list *lst);
 
 /*
 ** print

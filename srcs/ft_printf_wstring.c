@@ -82,6 +82,8 @@ int				ft_printf_wstring(t_arg *arg, va_list *lst)
 
 	str = va_arg(*lst, wchar_t*);
 	len = 0;
+	if (str == 0)
+		str = L"(null)";
 	cur = str;
 	while (*cur)
 	{

@@ -12,6 +12,7 @@ SOURCES = ft_printf.c \
 		  ft_printf_wstring.c \
 		  ft_printf_char.c \
 		  ft_printf_wchar.c \
+		  ft_printf_noconv.c \
 
 LIBOBJS = ./libft/ft_bzero.o \
 		  ./libft/ft_isascii.o \
