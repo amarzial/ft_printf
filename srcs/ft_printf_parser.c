@@ -6,7 +6,7 @@
 /*   By: amarzial <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/07 17:58:05 by amarzial          #+#    #+#             */
-/*   Updated: 2016/12/18 20:36:53 by amarzial         ###   ########.fr       */
+/*   Updated: 2016/12/19 18:13:58 by amarzial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,24 +18,24 @@ static int	parse_len(char *str, t_arg *arg)
 {
 	if (*str == 'h' && *(str + 1) == 'h')
 	{
-		arg->length_mod = hh;
+		arg->length_mod = ft_max(arg->length_mod, hh);
 		return (2);
 	}
 	else if (*str == 'l' && *(str + 1) == 'l')
 	{
-		arg->length_mod = ll;
+		arg->length_mod = ft_max(arg->length_mod, ll);
 		return (2);
 	}
 	else if (*str == 'h' || *str == 'l' || *str == 'j' || *str == 'z')
 	{
 		if (*str == 'h')
-			arg->length_mod = h;
+			arg->length_mod = ft_max(arg->length_mod, h);
 		else if (*str == 'l')
-			arg->length_mod = l;
+			arg->length_mod = ft_max(arg->length_mod, l);
 		else if (*str == 'j')
-			arg->length_mod = j;
+			arg->length_mod = ft_max(arg->length_mod, j);
 		else if (*str == 'z')
-			arg->length_mod = z;
+			arg->length_mod = ft_max(arg->length_mod, z);
 		return (1);
 	}
 	return (0);
