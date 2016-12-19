@@ -41,7 +41,10 @@ static void			padding(char *out, int len, t_arg *arg)
 	if (arg->size > len)
 	{
 		if (arg->flag_left)
+		{
+			ft_memmove(out, out + (arg->size - len), len);
 			ft_memset(out + len, ' ', arg->size - len);
+		}
 		else if (arg->flag_zero)
 			ft_memset(out, '0', arg->size - len);
 		else

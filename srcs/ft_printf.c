@@ -19,7 +19,7 @@ static int	print_arg(char **str, va_list *lst)
 	int		len;
 
 	ft_bzero(&arg, sizeof(t_arg));
-	len = ft_printf_parse_arg(*str, &arg);
+	len = ft_printf_parse_arg(*str, &arg, lst);
 	ft_printf_handler(&arg, lst);
 	*str += len;
 	return (arg.size);

@@ -11,7 +11,9 @@
 /* ************************************************************************** */
 
 #include <stdint.h>
+#include <stdarg.h>
 #include <unistd.h>
+#include "ft_printf_internal.h"
 
 void	ft_printf_putnchar(char c, int times)
 {
@@ -47,4 +49,12 @@ int		udigits(uintmax_t n, int base)
 		n /= base;
 	}
 	return (ret);
+}
+
+int		get_int_arg(va_list *lst)
+{
+	int		res;
+
+	res = va_arg(*lst, int);
+	return (res);
 }

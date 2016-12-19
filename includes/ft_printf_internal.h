@@ -14,7 +14,7 @@
 # define FT_PRINTF_INTERNAL_H
 # include <stdarg.h>
 # include <stdint.h>
-# define FT_PRINTF_CSET "#0-+ .%sSpdDioOuUxXcChljz0123456789"
+# define FT_PRINTF_CSET "#0-+ *.%sSpdDioOuUxXcChljz0123456789"
 # define FT_PRINTF_CONVERSION "%sSpdDioOuUxXcC"
 
 typedef struct	s_arg
@@ -41,7 +41,7 @@ typedef struct	s_arg
 	int		size;
 }				t_arg;
 
-int				ft_printf_parse_arg(char *str, t_arg *arg);
+int				ft_printf_parse_arg(char *str, t_arg *arg, va_list *lst);
 
 int				ft_printf_handler(t_arg *arg, va_list *lst);
 
@@ -59,9 +59,8 @@ int				ft_printf_wchar(t_arg *arg, va_list *lst);
 int				ft_printf_noconv(t_arg *arg, va_list *lst);
 
 /*
-** print
+** conversion
 */
-void			ft_printf_putnchar(char c, int times);
 void			ft_printf_signedtostr(char *out, intmax_t num, t_arg *arg);
 void			ft_printf_unsignedtostr_base(char *out, uintmax_t num, \
 t_arg *arg, char *base);
@@ -69,7 +68,9 @@ t_arg *arg, char *base);
 /*
 ** utilities
 */
+void			ft_printf_putnchar(char c, int times);
 int				idigits(intmax_t n, int base);
 int				udigits(uintmax_t n, int base);
+int				get_int_arg(va_list *lst);
 
 #endif

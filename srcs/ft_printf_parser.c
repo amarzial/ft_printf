@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdarg.h>
 #include "libft.h"
 #include "ft_printf_internal.h"
 
@@ -57,24 +58,29 @@ static int	parse_flag(char *str, t_arg *arg)
 	return (1);
 }
 
-static int	parse_num(char *str, t_arg *arg)
+static int	parse_num(char *str, t_arg *arg, va_list *lst)
 {
 	if (*str == '.')
 	{
 		arg->prec_set = 1;
-		arg->precision = ft_atoi(str + 1);
+		arg->precision = ((str[1] == '*') ? \
+		get_int_arg(lst) : ft_atoi(str + 1));
 		arg->precision = (arg->precision < 0) ? 0 : arg->precision;
 		return (1 + idigits(arg->precision, 10) - (ft_isdigit(str[1]) ? 0 : 1));
 	}
-	else if (ft_isdigit(*str))
+	else if (ft_isdigit(*str) || *str == '*')
 	{
-		arg->field_width = ft_atoi(str);
+		arg->field_width = ((*str == '*') ? \
+		get_int_arg(lst) : ft_atoi(str));
+		if (arg->field_width < 0 && \
+		(arg->field_width = ft_abs(arg->field_width)))
+			arg->flag_left = 1;
 		return (idigits(arg->field_width, 10));
 	}
 	return (0);
 }
 
-static int	parse(char *str, t_arg *arg, int len)
+static int	parse(char *str, t_arg *arg, int len, va_list *lst)
 {
 	int		idx;
 	int		cnt;
@@ -86,7 +92,7 @@ static int	parse(char *str, t_arg *arg, int len)
 			continue ;
 		else if ((cnt = parse_len(str + idx, arg)) && (idx += cnt))
 			continue ;
-		else if ((cnt = parse_num(str + idx, arg)) && (idx += cnt))
+		else if ((cnt = parse_num(str + idx, arg, lst)) && (idx += cnt))
 			continue ;
 		return (0);
 	}
@@ -95,7 +101,7 @@ static int	parse(char *str, t_arg *arg, int len)
 	return (1);
 }
 
-int			ft_printf_parse_arg(char *str, t_arg *arg)
+int			ft_printf_parse_arg(char *str, t_arg *arg, va_list *lst)
 {
 	int		idx;
 	int		isconv;
@@ -109,7 +115,7 @@ int			ft_printf_parse_arg(char *str, t_arg *arg)
 		idx++;
 	}
 	arg->conversion = str[idx];
-	parse(str + 1, arg, idx - 1);
+	parse(str + 1, arg, idx - 1, lst);
 	if (!str[idx])
 		idx--;
 	return (idx + 1);
