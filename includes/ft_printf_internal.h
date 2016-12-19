@@ -49,7 +49,9 @@ int				ft_printf_handler(t_arg *arg, va_list *lst);
 ** handlers
 */
 int				ft_printf_signed_decimal(t_arg *arg, va_list *lst);
-int				ft_printf_unsigned_base(t_arg *arg, va_list *lst);
+int				ft_printf_unsigned_decimal(t_arg *arg, va_list *lst);
+int				ft_printf_unsigned_octal(t_arg *arg, va_list *lst);
+int				ft_printf_unsigned_hex(t_arg *arg, va_list *lst);
 int				ft_printf_string(t_arg *arg, va_list *lst);
 int				ft_printf_wstring(t_arg *arg, va_list *lst);
 int				ft_printf_char(t_arg *arg, va_list *lst);
